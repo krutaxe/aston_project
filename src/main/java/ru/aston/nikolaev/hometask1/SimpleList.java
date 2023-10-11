@@ -1,4 +1,4 @@
-package ru.aston.nikolaev.hometask;
+package ru.aston.nikolaev.hometask1;
 
 /**
  * Данный интерфейс описывает работу простейшего List для собственной реализации,

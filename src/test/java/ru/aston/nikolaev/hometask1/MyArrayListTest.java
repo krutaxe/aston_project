@@ -1,4 +1,4 @@
-package ru.aston.nikolaev.hometask;
+package ru.aston.nikolaev.hometask1;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
