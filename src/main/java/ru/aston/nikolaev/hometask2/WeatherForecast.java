@@ -29,7 +29,7 @@ public class WeatherForecast {
      * @param apiUrl адрес по которому будет выполняться GET запрос.
      * @return Метод возвращает JSON с подробной информацие о погоде.
      */
-    private static String getResponse(String apiUrl) {
+    public String getResponse(String apiUrl) {
         StringBuilder response = new StringBuilder();
         try {
             URL url = new URL(apiUrl);
@@ -48,6 +48,7 @@ public class WeatherForecast {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println(response);
         return response.toString();
     }
 
@@ -58,7 +59,7 @@ public class WeatherForecast {
      * парсится в удобный формат, выводится в консоль и записывается в файл.
      * @param city Пользователь вводит название города.
      */
-    public static void getWeatherFor3Days(String city) {
+    public void getWeatherFor3Days(String city) {
         String apiUrl = "https://api.openweathermap.org/data/2.5/"
                 + "forecast?q=" + city + "&appid=" + API_KEI + "&units=metric";
         ObjectMapper mapper = new ObjectMapper();
@@ -107,7 +108,7 @@ public class WeatherForecast {
      * парсится в удобный формат, выводится в консоль и записывается в файл.
      * @param city Пользователь вводит название города.
      */
-    public static void getWeatherNow(String city) {
+    public void getWeatherNow(String city) {
         String apiUrl = "https://api.openweathermap.org/data/2.5/weather?q="
                 + city + "&appid=" + API_KEI + "&units=metric";
         ObjectMapper mapper = new ObjectMapper();
@@ -133,15 +134,16 @@ public class WeatherForecast {
     }
 
     public static void main(String[] args) {
+        WeatherForecast weatherForecast = new WeatherForecast();
         System.out.println("Введите название города на английском языке для получения прогноза погоды: ");
         Scanner scanner = new Scanner(System.in);
         String city = scanner.next();
         System.out.println("Если текущую погоду то введите цифру 1, если на ближайшие 3 дня то введите цифру 3");
         int flag = scanner.nextInt();
         if (flag == 1) {
-            getWeatherNow(city);
+            weatherForecast.getWeatherNow(city);
         } else if (flag == 3) {
-            getWeatherFor3Days(city);
+            weatherForecast.getWeatherFor3Days(city);
         } else {
             System.out.println("Вы ввели не правильное значение");
         }
