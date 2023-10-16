@@ -8,6 +8,12 @@ import ru.aston.nikolaev.hometask2.util.Config;
 import java.sql.*;
 import java.util.List;
 
+
+/**
+ * Данный класс длбавляет прогноз погоды в БД.
+ * @author Dmitrii Nikolaev
+ * @version 1.0
+ */
 public class WeatherRepositoryImpl implements WeatherRepository {
     private final ForecastService forecastService = new ForecastServiceImpl();
 
@@ -17,9 +23,10 @@ public class WeatherRepositoryImpl implements WeatherRepository {
     private static final String ADD_WEATHER_CURRENT_SQL = "INSERT INTO Weather(city, temp, sky, speed)" +
             "values (?, ?, ?, ?)";
 
-
-
-
+    /**
+     * Добавляет текущую погоду в БД по названию города.
+     * @param city Название города
+     */
     @Override
     public void addWeatherCurrent(String city) {
         Weather weather = forecastService.getWeatherNow(city);
@@ -43,6 +50,11 @@ public class WeatherRepositoryImpl implements WeatherRepository {
         }
     }
 
+
+    /**
+     * Добавляет прогноз погоды на 5 дней в БД по названию города.
+     * @param city Название города
+     */
     @Override
     public void addWeatherFor3Day(String city) {
         List<Weather> weatherList = forecastService.getWeatherFor3Days(city);

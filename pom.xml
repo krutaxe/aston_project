@@ -3,35 +3,6 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ru.aston.nikolaev</groupId>
     <artifactId>aston_project</artifactId>
-<<<<<<< HEAD
-    <packaging>jar</packaging>
-    <build>
-        <plugins>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>9</source>
-                    <target>9</target>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
-            </plugin>
-
-        </plugins>
-    </build>
-    <version>1.0-SNAPSHOT</version>
-    <name>aston_project</name>
-    <url>http://maven.apache.org</url>
-    <dependencies>
-
-=======
-
     <packaging>war</packaging>
 
     <properties>
@@ -44,14 +15,6 @@
     <url>http://maven.apache.org</url>
 
     <dependencies>
->>>>>>> 43453d8 (save config)
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -61,23 +24,6 @@
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-<<<<<<< HEAD
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>RELEASE</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-=======
->>>>>>> 43453d8 (save config)
             <artifactId>junit-jupiter-engine</artifactId>
             <version>5.9.3</version>
             <scope>test</scope>
@@ -102,10 +48,6 @@
             <version>3.5.13</version>
             <scope>test</scope>
         </dependency>
-<<<<<<< HEAD
-    </dependencies>
-=======
-
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -125,7 +67,6 @@
             <version>1.1.2</version>
         </dependency>
 
-
     </dependencies>
 
     <build>
@@ -137,6 +78,7 @@
             </plugin>
         </plugins>
     </build>
-
->>>>>>> 43453d8 (save config)
 </project>
+
+
+

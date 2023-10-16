@@ -3,12 +3,38 @@ package ru.aston.nikolaev.hometask2.model;
 import java.sql.Timestamp;
 import java.util.StringJoiner;
 
+/**
+ * Класс описывает модель "погода",
+ * со своими свойсвами для загрузки и получения
+ * из базы данных.
+ *
+ * @author Dmitrii Nikolaev
+ * @version 1.0
+ */
 public class Weather {
+    /**
+     * Primary key
+     */
     private int id;
+    /**
+     * Название города
+     */
     private String city;
+    /**
+     * Температура
+     */
     private int temp;
+    /**
+     * Облачность
+     */
     private String sky;
+    /**
+     * Скорость ветра
+     */
     private int windSpeed;
+    /**
+     * Дата прогноза.
+     */
     private Timestamp date;
 
     public Weather(int id, String city, int temp, String sky, int windSpeed, Timestamp date) {

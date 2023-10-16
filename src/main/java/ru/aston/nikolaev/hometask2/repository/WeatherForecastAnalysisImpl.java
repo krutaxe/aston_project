@@ -25,6 +25,10 @@ public class WeatherForecastAnalysisImpl implements WeatherForecastAnalysis {
 
     }
 
+    /**
+     * @param sql SQL запрос.
+     * @return Возвращает информацию по SQL запросу.
+     */
     private String getDataForecast(String sql) {
         String city = null;
         double temp = -100;
@@ -42,30 +46,45 @@ public class WeatherForecastAnalysisImpl implements WeatherForecastAnalysis {
         return city + " " + temp;
     }
 
+    /**
+     * @return возвращает строку с городом и максимальной температурой.
+     */
     @Override
     public String getCityWithMaxTemp() {
         return "Максимальная температура за период в городе: "
                 + getDataForecast(GET_CITY_MAX_TEMP) + " градусов";
     }
 
+    /**
+     * @return возвращает строку с городом и минимальной температурой.
+     */
     @Override
     public String getCityWithMinTemp() {
-        return "Максимальная температура за период в городе: "
+        return "Минимальная температура за период в городе: "
                 + getDataForecast(GET_CITY_MIN_TEMP) + " градусов";
     }
 
+    /**
+     * @return возвращает строку с городом и средней максимальной температурой.
+     */
     @Override
     public String getCityWithMaxAvgTemp() {
         return "Средняя максимальная температура за период в городе: "
                 + getDataForecast(GET_CITY_MAX_AVG_TEMP) + " градусов";
     }
 
+    /**
+     * @return возвращает строку с городом и средней минимальной температурой.
+     */
     @Override
     public String getCityWithMinAvgTemp() {
         return "Средняя минимальная температура за период в городе: "
                 + getDataForecast(GET_CITY_MIN_AVG_TEMP) + " градусов";
     }
 
+    /**
+     * @return возвращает строку с городом и средней температурой.
+     */
     @Override
     public String getAvgTempFromCity(String city) {
         double avgTemp = -100;
@@ -83,6 +102,10 @@ public class WeatherForecastAnalysisImpl implements WeatherForecastAnalysis {
         return "Средняя температура за период в городе: " + city + " " + avgTemp + " градусов";
     }
 
+
+    /**
+     * @return возвращает список городов которые есть в БД.
+     */
     @Override
     public List<String> getAllCityDB() {
         List<String> cityList = new ArrayList<>();
