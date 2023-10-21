@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static java.time.LocalDateTime.*;
+
 /**
  * Класс предоставляет доступ к сервису погоды.
  * Пользователь должен сам ввести название города и
@@ -124,24 +126,13 @@ public class ForecastServiceImpl implements ForecastService {
                 + city + "&appid=" + API_KEI + "&units=metric";
         ObjectMapper mapper = new ObjectMapper();
         Weather weatherObj = new Weather();
-
-        try (FileWriter writer = new FileWriter("data/weatherNow.txt")) {
+        try  {
             JsonNode jsonNode = mapper.readTree(getResponse(apiUrl));
-            StringBuilder result = new StringBuilder();
-            result.append("Текущая погода в городе: ").append(city).append(System.lineSeparator());
-
             weatherObj.setTemp(jsonNode.get("main").get("temp").asInt());
             weatherObj.setSky(jsonNode.get("weather").get(0).get("main").toString().replaceAll("\"", ""));
             weatherObj.setWindSpeed(jsonNode.get("wind").get("speed").asInt());
+            weatherObj.setDate(new Timestamp(System.currentTimeMillis()));
             weatherObj.setCity(city);
-
-
-            result.append("Температура: ").append(weatherObj.getTemp()).append(System.lineSeparator())
-                    .append("Осадки: ").append(weatherObj.getSky()).append(System.lineSeparator())
-                    .append("Скорость ветра: ").append(weatherObj.getWindSpeed()).append(" м/с").append(System.lineSeparator())
-                    .append("Дата: ").append(LocalDateTime.now());
-            String weather = result.toString();
-            writer.write(weather);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
