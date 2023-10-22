@@ -5,16 +5,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import ru.aston.nikolaev.hometask2.model.Weather;
 import ru.aston.nikolaev.hometask2.repository.WeatherRepository;
 import ru.aston.nikolaev.hometask2.repository.WeatherRepositoryImpl;
 import ru.aston.nikolaev.hometask4.model.User;
 import ru.aston.nikolaev.hometask4.repository.UserRepository;
-import ru.aston.nikolaev.hometask4.util.SessionHttp;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
