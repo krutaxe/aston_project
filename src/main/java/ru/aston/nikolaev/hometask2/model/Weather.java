@@ -1,5 +1,10 @@
 package ru.aston.nikolaev.hometask2.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.sql.Timestamp;
 import java.util.StringJoiner;
 
@@ -11,30 +16,40 @@ import java.util.StringJoiner;
  * @author Dmitrii Nikolaev
  * @version 1.0
  */
+
+@Entity
+@Table(name = "weather")
 public class Weather {
     /**
      * Primary key
      */
+    @Id
+    @Column(name = "id")
     private int id;
     /**
      * Название города
      */
+    @Column(name = "city")
     private String city;
     /**
      * Температура
      */
+    @Column(name = "temp")
     private int temp;
     /**
      * Облачность
      */
+    @Column(name = "sky")
     private String sky;
     /**
      * Скорость ветра
      */
+    @Column(name = "speed")
     private int windSpeed;
     /**
      * Дата прогноза.
      */
+    @Column(name = "date")
     private Timestamp date;
 
     public Weather(int id, String city, int temp, String sky, int windSpeed, Timestamp date) {

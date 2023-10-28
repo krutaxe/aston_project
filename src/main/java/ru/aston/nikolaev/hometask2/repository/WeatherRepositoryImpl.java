@@ -1,15 +1,17 @@
 package ru.aston.nikolaev.hometask2.repository;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import ru.aston.nikolaev.hometask2.model.Weather;
 import ru.aston.nikolaev.hometask2.service.ForecastService;
 import ru.aston.nikolaev.hometask2.service.ForecastServiceImpl;
-import ru.aston.nikolaev.hometask2.model.Weather;
 import ru.aston.nikolaev.hometask2.util.Config;
 import ru.aston.nikolaev.hometask4.model.User;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,6 @@ public class WeatherRepositoryImpl implements WeatherRepository {
             "values (?, ?, ?, ?, ?, ?)";
     private static final String GET_WEATHER_FROM_USER_ID_SQL = "SELECT * FROM weather WHERE user_id = ?";
     private static final String GET_ALL_WEATHER = "SELECT * FROM weather";
-
 
     @Override
     public List<Weather> getAllWeather() {

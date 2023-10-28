@@ -1,11 +1,16 @@
 package ru.aston.nikolaev.hometask4.model;
 
+import jakarta.persistence.*;
 import ru.aston.nikolaev.hometask2.model.Weather;
 
 import java.util.List;
 import java.util.StringJoiner;
 
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
@@ -14,7 +19,6 @@ public class User {
 
     private String password;
 
-    private List<Weather> weatherList;
 
     public User(String name, String login, String password) {
         this.name = name;
