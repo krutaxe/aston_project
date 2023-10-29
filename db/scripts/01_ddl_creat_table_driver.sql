@@ -1,6 +1,5 @@
-CREATE TABLE users (
+CREATE TABLE driver (
     id serial PRIMARY KEY,
     name varchar(20) not null,
-    login varchar(20) not null unique,
-    password varchar(20) not null
+    age int
 );

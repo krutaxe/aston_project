@@ -1,7 +1,9 @@
 package ru.aston.nikolaev.hometask2.repository;
 
-import ru.aston.nikolaev.hometask2.service.ForecastService;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import ru.aston.nikolaev.hometask2.util.Config;
+import ru.aston.nikolaev.hometask2.util.HibernateConfig;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,15 +11,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class WeatherForecastAnalysisImpl implements WeatherForecastAnalysis {
-    private static final String GET_CITY_MAX_TEMP = "SELECT city, temp FROM weather ORDER BY temp DESC LIMIT 1";
-    private static final String GET_CITY_MIN_TEMP = "SELECT city, temp FROM weather ORDER BY temp LIMIT 1";
+
+    private final SessionFactory sessionFactory = HibernateConfig.getSessionFactory();
+    private static final String GET_CITY_MAX_TEMP = "Select city, temp FROM weather ORDER BY temp DESC LIMIT 1";
+    private static final String GET_CITY_MIN_TEMP = "Select city, temp FROM weather ORDER BY temp LIMIT 1";
+
     private static final String GET_CITY_MAX_AVG_TEMP = "SELECT city, avg(temp) as temp FROM weather "
            + "GROUP BY city ORDER BY avg(temp) DESC LIMIT 1";
+
     private static final String GET_CITY_MIN_AVG_TEMP = "SELECT city, avg(temp) as temp FROM weather "
           +  "GROUP BY city ORDER BY avg(temp) LIMIT 1";
+
     private static final String GET_AVG_TEMP_SQL = "SELECT city, round(avg(temp), 1) as avg_temp FROM weather WHERE city = ? GROUP BY city;";
     private static final String GET_ALL_CITY = "SELECT distinct city FROM weather";
 
@@ -30,19 +36,26 @@ public class WeatherForecastAnalysisImpl implements WeatherForecastAnalysis {
      * @return Возвращает информацию по SQL запросу.
      */
     private String getDataForecast(String sql) {
-        String city = null;
-        double temp = -100;
-        try (Connection connection = Config.open()){
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()) {
-                city = resultSet.getString("city");
-                temp = resultSet.getDouble("temp");
-            }
+        String city;
+        String temp;
+        Session session = sessionFactory.openSession();
+        List<Object[]> list = session.createNativeQuery(sql).getResultList();
+        city = (String) list.get(0)[0];
+        temp = String.valueOf(list.get(0)[1]);
+        session.close();
 
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
+//        try (Connection connection = Config.open()){
+//            PreparedStatement ps = connection.prepareStatement(sql);
+//            ResultSet resultSet = ps.executeQuery();
+//            while (resultSet.next()) {
+//                city = resultSet.getString("city");
+//                temp = resultSet.getDouble("temp");
+//            }
+//
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
         return city + " " + temp;
     }
 

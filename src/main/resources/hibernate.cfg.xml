@@ -15,6 +15,9 @@
 
         <mapping class="ru.aston.nikolaev.hometask2.model.Weather" />
         <mapping class="ru.aston.nikolaev.hometask4.model.User" />
+        <mapping class="ru.aston.nikolaev.manyToMany.Auto" />
+        <mapping class="ru.aston.nikolaev.manyToMany.Driver" />
+
 
     </session-factory>
 </hibernate-configuration>

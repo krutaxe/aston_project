@@ -1,9 +1,6 @@
 package ru.aston.nikolaev.hometask2.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.sql.Timestamp;
 import java.util.StringJoiner;
@@ -25,6 +22,7 @@ public class Weather {
      */
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     /**
      * Название города
@@ -52,6 +50,9 @@ public class Weather {
     @Column(name = "date")
     private Timestamp date;
 
+    @Column(name = "user_id")
+    private int userId;
+
     public Weather(int id, String city, int temp, String sky, int windSpeed, Timestamp date) {
         this.id = id;
         this.city = city;
@@ -62,6 +63,14 @@ public class Weather {
     }
 
     public Weather() {
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public Timestamp getDate() {
